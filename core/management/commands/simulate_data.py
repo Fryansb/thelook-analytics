@@ -28,14 +28,15 @@ class Command(BaseCommand):
         start = date(today.year - years, 1, 1)
 
         # Garante unicidade de e-mails
+
         emails = set()
-        customers = []
-        while len(customers) < 2000:
+        customers_objs = []
+        while len(customers_objs) < 2000:
             email = fake.unique.email()
             if email in emails:
                 continue
             emails.add(email)
-            customers.append(Customer(
+            customers_objs.append(Customer(
                 name=fake.name(),
                 email=email,
                 segment=random.choices(SEGMENTS, weights=[0.15, 0.35, 0.5])[0],
@@ -44,9 +45,9 @@ class Command(BaseCommand):
                 region=random.choice(REGIONS),
                 created_at=fake.date_between(start_date=start, end_date=today),
             ))
-        Customer.objects.bulk_create(customers, batch_size=500)
+        customers = Customer.objects.bulk_create(customers_objs, batch_size=500)
 
-        products = [
+        products_objs = [
             Product(
                 name=f"Produto {i+1}",
                 category=random.choice(CATEGORIES),
@@ -56,14 +57,14 @@ class Command(BaseCommand):
             )
             for i in range(300)
         ]
-        Product.objects.bulk_create(products, batch_size=200)
+        products = Product.objects.bulk_create(products_objs, batch_size=200)
 
-        # Não faz queries desnecessárias, mantém listas locais
         pareto_products = products[:int(0.2 * len(products))]
 
 
 
-        orders = []
+
+        orders_objs = []
         for year in range(today.year - years, today.year + 1):
             base = 5000
             n_orders = int(base * (1.2 ** (year - (today.year - years))))
@@ -84,14 +85,14 @@ class Command(BaseCommand):
                     churn = min(0.5, ((today - customer.created_at).days - 365) / 2000)
                     if random.random() < churn:
                         continue
-                orders.append(Order(
+                orders_objs.append(Order(
                     customer=customer,
                     order_date=order_date,
                     delivery_date=delivery_date,
                     status=status,
                     channel=channel,
                 ))
-        Order.objects.bulk_create(orders, batch_size=1000)
+        orders = Order.objects.bulk_create(orders_objs, batch_size=1000)
 
 
 
