@@ -77,6 +77,9 @@ class Command(BaseCommand):
                 status = random.choices(STATUS, weights=[0.85, 0.1, 0.03, 0.02])[0]
                 channel = random.choice(CHANNELS)
                 customer = random.choice(customers)
+                # --- INTEGRIDADE TEMPORAL ---
+                if order_date < customer.created_at:
+                    continue
                 if (today - customer.created_at).days > 365:
                     churn = min(0.5, ((today - customer.created_at).days - 365) / 2000)
                     if random.random() < churn:
