@@ -1,12 +1,12 @@
--- Query para análise no Superset: Receita Total e Lucro Bruto por mês e dimensões
+-- Query para analise no Superset: Receita Total e Lucro Bruto por mes e dimensoes
 SELECT
-    DATE_TRUNC('month', o.created_at) AS mes,
+    DATE_TRUNC('month', o.order_date) AS mes,
     p.category AS categoria,
     c.region AS regiao,
     c.state AS estado,
-    o.sales_channel AS canal_venda,
-    SUM(oi.price * oi.quantity) AS receita_total,
-    SUM((oi.price - oi.cost) * oi.quantity) AS lucro_bruto
+    o.channel AS canal_venda,
+    SUM(oi.unit_price * oi.quantity) AS receita_total,
+    SUM((oi.unit_price - oi.unit_cost) * oi.quantity) AS lucro_bruto
 FROM
     core_order o
 JOIN
