@@ -1,4 +1,5 @@
 # Python
+<<<<<<< HEAD
 *.py[cod]
 *$py.class
 *.so
@@ -11,10 +12,21 @@ venv/
 env/
 ENV/
 .venv
+=======
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.eggs/
+*.egg
+>>>>>>> fbe27ca3 (chore: adiciona .gitignore e versiona base limpa, testes robustos e automação de simulação de dados)
 
 # Django
 *.log
 db.sqlite3
+<<<<<<< HEAD
 db.sqlite3-journal
 /staticfiles/
 /media/
@@ -91,3 +103,42 @@ superset_home/
 *.xlsx
 *.xls
 data/
+=======
+media/
+staticfiles/
+
+# VSCode
+.vscode/
+
+# Environments
+.env
+.venv/
+venv/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# pytest
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/
+
+# Coverage
+htmlcov/
+.coverage
+
+# Others
+*.bak
+*.swp
+*.swo
+
+# Docker
+*.pid
+docker-compose.override.yml
+>>>>>>> fbe27ca3 (chore: adiciona .gitignore e versiona base limpa, testes robustos e automação de simulação de dados)
