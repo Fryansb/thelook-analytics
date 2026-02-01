@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: thelook_db
+      POSTGRES_USER: thelook_user
+      POSTGRES_PASSWORD: thelook_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U thelook_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  web:
+    build: .
+    command: bash -c "python manage.py migrate && python manage.py simulate_data && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DJANGO_SETTINGS_MODULE=config.settings
+      - PYTHONUNBUFFERED=1
+      - DB_HOST=db
+      - DB_NAME=thelook_db
+      - DB_USER=thelook_user
+      - DB_PASS=thelook_pass
+  superset:
+    image: apache/superset:3.0.0
+    environment:
+      SUPERSET_SECRET_KEY: 'superset_secret_key'
+      SUPERSET_DATABASE_URI: 'sqlite:////app/superset_home/superset.db'
+    ports:
+      - "8088:8088"
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - superset_home:/app/superset_home
+volumes:
+  pgdata:
+  superset_home:
