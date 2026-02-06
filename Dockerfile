@@ -1,6 +1,15 @@
 FROM python:3.12-slim
+
+RUN apt-get update && apt-get install -y netcat-traditional && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /code
+
 COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
+
 COPY . .
-CMD ["bash", "-c", "python manage.py migrate && python manage.py simulate_data && python manage.py runserver 0.0.0.0:8000"]
+
+RUN chmod +x /code/entrypoint.sh
+
+ENTRYPOINT ["/code/entrypoint.sh"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

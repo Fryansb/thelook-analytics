@@ -8,97 +8,238 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Customer',
+            name="Customer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='Nome')),
-                ('email', models.EmailField(max_length=254, unique=True, verbose_name='E-mail')),
-                ('segment', models.CharField(choices=[('Gold', 'Gold'), ('Silver', 'Silver'), ('Bronze', 'Bronze')], max_length=10, verbose_name='Segmento')),
-                ('city', models.CharField(max_length=50, verbose_name='Cidade')),
-                ('state', models.CharField(max_length=30, verbose_name='Estado')),
-                ('region', models.CharField(max_length=30, verbose_name='Região')),
-                ('created_at', models.DateField(verbose_name='Criado em')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, verbose_name="Nome")),
+                (
+                    "email",
+                    models.EmailField(
+                        max_length=254, unique=True, verbose_name="E-mail"
+                    ),
+                ),
+                (
+                    "segment",
+                    models.CharField(
+                        choices=[
+                            ("Gold", "Gold"),
+                            ("Silver", "Silver"),
+                            ("Bronze", "Bronze"),
+                        ],
+                        max_length=10,
+                        verbose_name="Segmento",
+                    ),
+                ),
+                ("city", models.CharField(max_length=50, verbose_name="Cidade")),
+                ("state", models.CharField(max_length=30, verbose_name="Estado")),
+                ("region", models.CharField(max_length=30, verbose_name="Região")),
+                ("created_at", models.DateField(verbose_name="Criado em")),
             ],
             options={
-                'verbose_name': 'Cliente',
-                'verbose_name_plural': 'Clientes',
-                'indexes': [models.Index(fields=['segment', 'region'], name='core_custom_segment_769c2e_idx')],
+                "verbose_name": "Cliente",
+                "verbose_name_plural": "Clientes",
+                "indexes": [
+                    models.Index(
+                        fields=["segment", "region"],
+                        name="core_custom_segment_769c2e_idx",
+                    )
+                ],
             },
         ),
         migrations.CreateModel(
-            name='Order',
+            name="Order",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('order_date', models.DateField(verbose_name='Data do Pedido')),
-                ('delivery_date', models.DateField(verbose_name='Data de Entrega')),
-                ('status', models.CharField(choices=[('Completed', 'Completed'), ('Pending', 'Pending'), ('Cancelled', 'Cancelled'), ('Returned', 'Returned')], max_length=10, verbose_name='Status')),
-                ('channel', models.CharField(choices=[('Online', 'Online'), ('Store', 'Store'), ('Phone', 'Phone'), ('App', 'App')], max_length=10, verbose_name='Canal')),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='orders', to='core.customer')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("order_date", models.DateField(verbose_name="Data do Pedido")),
+                ("delivery_date", models.DateField(verbose_name="Data de Entrega")),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("Completed", "Completed"),
+                            ("Pending", "Pending"),
+                            ("Cancelled", "Cancelled"),
+                            ("Returned", "Returned"),
+                        ],
+                        max_length=10,
+                        verbose_name="Status",
+                    ),
+                ),
+                (
+                    "channel",
+                    models.CharField(
+                        choices=[
+                            ("Online", "Online"),
+                            ("Store", "Store"),
+                            ("Phone", "Phone"),
+                            ("App", "App"),
+                        ],
+                        max_length=10,
+                        verbose_name="Canal",
+                    ),
+                ),
+                (
+                    "customer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="orders",
+                        to="core.customer",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Pedido',
-                'verbose_name_plural': 'Pedidos',
+                "verbose_name": "Pedido",
+                "verbose_name_plural": "Pedidos",
             },
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='Nome')),
-                ('category', models.CharField(max_length=50, verbose_name='Categoria')),
-                ('brand', models.CharField(max_length=50, verbose_name='Marca')),
-                ('cost', models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Custo')),
-                ('suggested_price', models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Preço Sugerido')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, verbose_name="Nome")),
+                ("category", models.CharField(max_length=50, verbose_name="Categoria")),
+                ("brand", models.CharField(max_length=50, verbose_name="Marca")),
+                (
+                    "cost",
+                    models.DecimalField(
+                        decimal_places=2, max_digits=10, verbose_name="Custo"
+                    ),
+                ),
+                (
+                    "suggested_price",
+                    models.DecimalField(
+                        decimal_places=2, max_digits=10, verbose_name="Preço Sugerido"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Produto',
-                'verbose_name_plural': 'Produtos',
-                'indexes': [models.Index(fields=['category', 'brand'], name='core_produc_categor_162958_idx')],
+                "verbose_name": "Produto",
+                "verbose_name_plural": "Produtos",
+                "indexes": [
+                    models.Index(
+                        fields=["category", "brand"],
+                        name="core_produc_categor_162958_idx",
+                    )
+                ],
             },
         ),
         migrations.CreateModel(
-            name='OrderItem',
+            name="OrderItem",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('quantity', models.PositiveIntegerField(verbose_name='Quantidade')),
-                ('unit_price', models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Preço Unitário')),
-                ('unit_cost', models.DecimalField(decimal_places=2, max_digits=10, verbose_name='Custo Unitário')),
-                ('discount_applied', models.DecimalField(decimal_places=2, default=0, max_digits=5, verbose_name='Desconto Aplicado')),
-                ('order', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='items', to='core.order')),
-                ('product', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.product')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("quantity", models.PositiveIntegerField(verbose_name="Quantidade")),
+                (
+                    "unit_price",
+                    models.DecimalField(
+                        decimal_places=2, max_digits=10, verbose_name="Preço Unitário"
+                    ),
+                ),
+                (
+                    "unit_cost",
+                    models.DecimalField(
+                        decimal_places=2, max_digits=10, verbose_name="Custo Unitário"
+                    ),
+                ),
+                (
+                    "discount_applied",
+                    models.DecimalField(
+                        decimal_places=2,
+                        default=0,
+                        max_digits=5,
+                        verbose_name="Desconto Aplicado",
+                    ),
+                ),
+                (
+                    "order",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="items",
+                        to="core.order",
+                    ),
+                ),
+                (
+                    "product",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="core.product"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Item do Pedido',
-                'verbose_name_plural': 'Itens do Pedido',
+                "verbose_name": "Item do Pedido",
+                "verbose_name_plural": "Itens do Pedido",
             },
         ),
         migrations.AddIndex(
-            model_name='order',
-            index=models.Index(fields=['order_date', 'status', 'channel'], name='core_order_order_d_5705a0_idx'),
+            model_name="order",
+            index=models.Index(
+                fields=["order_date", "status", "channel"],
+                name="core_order_order_d_5705a0_idx",
+            ),
         ),
         migrations.AddIndex(
-            model_name='orderitem',
-            index=models.Index(fields=['order', 'product'], name='core_orderi_order_i_267c14_idx'),
+            model_name="orderitem",
+            index=models.Index(
+                fields=["order", "product"], name="core_orderi_order_i_267c14_idx"
+            ),
         ),
         migrations.AddConstraint(
-            model_name='orderitem',
-            constraint=models.CheckConstraint(condition=models.Q(('quantity__gt', 0)), name='quantity_gt_0'),
+            model_name="orderitem",
+            constraint=models.CheckConstraint(
+                condition=models.Q(("quantity__gt", 0)), name="quantity_gt_0"
+            ),
         ),
         migrations.AddConstraint(
-            model_name='orderitem',
-            constraint=models.CheckConstraint(condition=models.Q(('unit_price__gte', 0)), name='unit_price_gte_0'),
+            model_name="orderitem",
+            constraint=models.CheckConstraint(
+                condition=models.Q(("unit_price__gte", 0)), name="unit_price_gte_0"
+            ),
         ),
         migrations.AddConstraint(
-            model_name='orderitem',
-            constraint=models.CheckConstraint(condition=models.Q(('unit_cost__gte', 0)), name='unit_cost_gte_0'),
+            model_name="orderitem",
+            constraint=models.CheckConstraint(
+                condition=models.Q(("unit_cost__gte", 0)), name="unit_cost_gte_0"
+            ),
         ),
         migrations.AddConstraint(
-            model_name='orderitem',
-            constraint=models.CheckConstraint(condition=models.Q(('discount_applied__gte', 0)), name='discount_gte_0'),
+            model_name="orderitem",
+            constraint=models.CheckConstraint(
+                condition=models.Q(("discount_applied__gte", 0)), name="discount_gte_0"
+            ),
         ),
     ]
