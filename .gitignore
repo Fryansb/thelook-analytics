@@ -142,3 +142,6 @@ htmlcov/
 *.pid
 docker-compose.override.yml
 >>>>>>> fbe27ca3 (chore: adiciona .gitignore e versiona base limpa, testes robustos e automação de simulação de dados)
+.flake8
+mypy.ini
+pytest.ini

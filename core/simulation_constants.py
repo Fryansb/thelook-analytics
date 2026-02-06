@@ -86,16 +86,16 @@ DAYS_PER_YEAR = 365.25
 MARKET_EVENT_PROBABILITY = 0.005  # 0.5% ao dia
 
 # Tipos de eventos
-MARKET_EVENT_VIRAL = 'viral'
-MARKET_EVENT_MARKETING = 'marketing'
-MARKET_EVENT_SITE_DOWN = 'site_down'
-MARKET_EVENT_LOGISTICS_CRISIS = 'logistics_crisis'
+MARKET_EVENT_VIRAL = "viral"
+MARKET_EVENT_MARKETING = "marketing"
+MARKET_EVENT_SITE_DOWN = "site_down"
+MARKET_EVENT_LOGISTICS_CRISIS = "logistics_crisis"
 
 MARKET_EVENTS = [
     MARKET_EVENT_VIRAL,
     MARKET_EVENT_MARKETING,
     MARKET_EVENT_SITE_DOWN,
-    MARKET_EVENT_LOGISTICS_CRISIS
+    MARKET_EVENT_LOGISTICS_CRISIS,
 ]
 
 # Dura\u00e7\u00e3o de eventos (dias)
@@ -104,19 +104,19 @@ MARKET_EVENT_MAX_DURATION = 7
 
 # Multiplicadores de eventos
 EVENT_MULTIPLIERS = {
-    MARKET_EVENT_VIRAL: 2.0,          # Dobra volume
-    MARKET_EVENT_MARKETING: 1.8,      # +80%
-    MARKET_EVENT_SITE_DOWN: 0.3,      # Cai 70%
-    MARKET_EVENT_LOGISTICS_CRISIS: 0.5  # Cai 50%
+    MARKET_EVENT_VIRAL: 2.0,  # Dobra volume
+    MARKET_EVENT_MARKETING: 1.8,  # +80%
+    MARKET_EVENT_SITE_DOWN: 0.3,  # Cai 70%
+    MARKET_EVENT_LOGISTICS_CRISIS: 0.5,  # Cai 50%
 }
 
 # =============================================================================
 # CICLO DE VIDA DE PRODUTOS
 # =============================================================================
 
-LIFECYCLE_STABLE = 'Stable'
-LIFECYCLE_VIRAL = 'Viral'
-LIFECYCLE_OBSOLETE = 'Obsolete'
+LIFECYCLE_STABLE = "Stable"
+LIFECYCLE_VIRAL = "Viral"
+LIFECYCLE_OBSOLETE = "Obsolete"
 
 # Distribui\u00e7\u00e3o de lifecycle
 LIFECYCLE_DISTRIBUTION = [LIFECYCLE_STABLE, LIFECYCLE_VIRAL, LIFECYCLE_OBSOLETE]
@@ -126,16 +126,16 @@ LIFECYCLE_PROBABILITIES = [0.7, 0.2, 0.1]  # 70% stable, 20% viral, 10% obsoleto
 LIFECYCLE_WEIGHTS = {
     LIFECYCLE_VIRAL: 5.0,
     LIFECYCLE_STABLE: 1.0,
-    LIFECYCLE_OBSOLETE: 0.1
+    LIFECYCLE_OBSOLETE: 0.1,
 }
 
 # =============================================================================
 # PERSONAS DE CLIENTES
 # =============================================================================
 
-PERSONA_ONE_TIME = 'OneTime'
-PERSONA_LEAL = 'Leal'
-PERSONA_VIP = 'VIP'
+PERSONA_ONE_TIME = "OneTime"
+PERSONA_LEAL = "Leal"
+PERSONA_VIP = "VIP"
 
 # Distribui\u00e7\u00e3o de personas
 PERSONAS = [PERSONA_ONE_TIME, PERSONA_LEAL, PERSONA_VIP]
@@ -145,7 +145,7 @@ PERSONA_PROBABILITIES = [0.70, 0.20, 0.10]  # 70% one-time, 20% leal, 10% VIP
 PERSONA_PURCHASE_RANGES = {
     PERSONA_ONE_TIME: (30, 100),
     PERSONA_LEAL: (100, 300),
-    PERSONA_VIP: (500, 1500)
+    PERSONA_VIP: (500, 1500),
 }
 
 # =============================================================================
@@ -163,11 +163,11 @@ CUSTOMER_VARIATION_MAX = 1.3
 # =============================================================================
 
 PRICE_RANGES = {
-    'Eletr\u00f4nicos': (500, 5000),
-    'Roupas': (40, 300),
-    'Casa': (50, 1000),
-    'Esporte': (50, 1000),
-    'Livros': (50, 1000)
+    "Eletr\u00f4nicos": (500, 5000),
+    "Roupas": (40, 300),
+    "Casa": (50, 1000),
+    "Esporte": (50, 1000),
+    "Livros": (50, 1000),
 }
 
 # Margem de custo (60% do pre\u00e7o)
@@ -191,13 +191,33 @@ REDIS_TTL_SECONDS = 86400  # 24 horas
 # =============================================================================
 
 UF_TO_REGION_MAP = {
-    'AC': 'Norte', 'AP': 'Norte', 'AM': 'Norte', 'PA': 'Norte', 
-    'RO': 'Norte', 'RR': 'Norte', 'TO': 'Norte',
-    'AL': 'Nordeste', 'BA': 'Nordeste', 'CE': 'Nordeste', 'MA': 'Nordeste',
-    'PB': 'Nordeste', 'PE': 'Nordeste', 'PI': 'Nordeste', 'RN': 'Nordeste', 'SE': 'Nordeste',
-    'DF': 'Centro-Oeste', 'GO': 'Centro-Oeste', 'MT': 'Centro-Oeste', 'MS': 'Centro-Oeste',
-    'ES': 'Sudeste', 'MG': 'Sudeste', 'RJ': 'Sudeste', 'SP': 'Sudeste',
-    'PR': 'Sul', 'RS': 'Sul', 'SC': 'Sul'
+    "AC": "Norte",
+    "AP": "Norte",
+    "AM": "Norte",
+    "PA": "Norte",
+    "RO": "Norte",
+    "RR": "Norte",
+    "TO": "Norte",
+    "AL": "Nordeste",
+    "BA": "Nordeste",
+    "CE": "Nordeste",
+    "MA": "Nordeste",
+    "PB": "Nordeste",
+    "PE": "Nordeste",
+    "PI": "Nordeste",
+    "RN": "Nordeste",
+    "SE": "Nordeste",
+    "DF": "Centro-Oeste",
+    "GO": "Centro-Oeste",
+    "MT": "Centro-Oeste",
+    "MS": "Centro-Oeste",
+    "ES": "Sudeste",
+    "MG": "Sudeste",
+    "RJ": "Sudeste",
+    "SP": "Sudeste",
+    "PR": "Sul",
+    "RS": "Sul",
+    "SC": "Sul",
 }
 
 # =============================================================================
